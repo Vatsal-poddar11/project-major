@@ -1,14 +1,18 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSelector } from "react-redux";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
 import { login } from "../services/operations/authAPI"
+import { getUserDetails } from "../services/operations/profileAPI";
 
 const LoginForm = () => {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const { token } = useSelector((state) => state.auth);
+    const { user } = useSelector((state) => state.profile);
 
     const [formData, setFormData] = useState({
         email: "",
@@ -29,6 +33,12 @@ const LoginForm = () => {
         e.preventDefault()
         dispatch(login(email, password, navigate))
     }
+
+    useEffect(() => {
+        if (token) {
+        dispatch(getUserDetails(token, navigate));
+        }
+    }, [token, dispatch, navigate]);
 
   return (
     <form

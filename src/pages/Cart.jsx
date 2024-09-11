@@ -50,7 +50,7 @@ const Cart = () => {
                 (
                 <div className="h-screen flex flex-col justify-center items-center">
                     <h1 className="text-[#333333] text-3xl font-bold mb-6">Cart Empty</h1>
-                    <NavLink to="/">
+                    <NavLink to="/catalog">
                         <button className="bg-[#508810e1] transition ease-in duration-200 hover:bg-[#8bc34a] flex items-center gap-x-2 uppercase font-semibold text-white pl-5 pr-5 pt-3 pb-3 rounded-md ">
                             <FaShoppingCart />
                             <p>Shop Now</p>
