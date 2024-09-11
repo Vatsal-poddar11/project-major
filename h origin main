@@ -1,0 +1,26 @@
+[33m28f570b[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m initial commit
+[33mc88efc3[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Added Cart Functionality
+[33m2d95bec[m Merge branch 'main' of https://github.com/Vatsal-poddar11/project-major
+[33mfc31919[m Added Profile Updation Facility
+[33ma9a26cf[m Add Contact page
+[33m2f36ed0[m Frontend - Backend connection
+[33m6e82981[m Added a Dashboard Page
+[33m489cc2b[m Added CORS
+[33m97a59df[m Merge branch 'backend'
+[33m61543d6[m Added Cart Page to display the items added to Cart
+[33mb5ad070[m Added Cart Model
+[33mf59841a[m Added CartSlice for Cart Functionality
+[33mf5d938e[m Added Search bar in Catalog Page
+[33m7b59496[m Added Catalog Page
+[33m8512b48[m SendOTP, SignUp, Login API Testing
+[33mac499f4[m MongoDB Atlas Connection
+[33m5f882d9[m Minor Navbar changes
+[33mc98a785[m Navbar updated
+[33m4310c45[m Login & SignUp Page building
+[33m7bc6be4[m Redux setup, Navbar
+[33m3c68b65[m Added a folder for navbar
+[33mbeb75d6[m Created User Routes, models and added emailing systems
+[33m016e87e[m Added gitignore
+[33m82233d8[m[33m ([m[1;31morigin/backend[m[33m)[m Backend Initial Setup
+[33m60a66c9[m React and Tailwind CSS Setup
+[33m8da87f8[m Initial commit
