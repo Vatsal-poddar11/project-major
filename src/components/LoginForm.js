@@ -6,13 +6,13 @@ import { useSelector } from "react-redux";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
 import { login } from "../services/operations/authAPI"
 import { getUserDetails } from "../services/operations/profileAPI";
+import { setUserId } from '../slices/authSlice';
 
 const LoginForm = () => {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { token } = useSelector((state) => state.auth);
-    const { user } = useSelector((state) => state.profile);
+    const { token, userId } = useSelector((state) => state.auth);
 
     const [formData, setFormData] = useState({
         email: "",
@@ -36,7 +36,9 @@ const LoginForm = () => {
 
     useEffect(() => {
         if (token) {
-        dispatch(getUserDetails(token, navigate));
+            dispatch(getUserDetails(token, navigate));
+            dispatch(setUserId(userId));
+            localStorage.setItem('userId', userId);
         }
     }, [token, dispatch, navigate]);
 

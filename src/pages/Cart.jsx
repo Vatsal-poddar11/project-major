@@ -22,13 +22,14 @@ const Cart = () => {
                 Object.keys(cart).length > 0 ? 
                 (
                 <div className="flex ml-5 mr-5">
-                    <div className="flex flex-col w-1/2 mt-20 items-center justify-center">
-                        { 
-                            Object.values(cart).map((item) => (
-                                <CartItem key={item.id} item={item} />
-                            ))
-                        }
-                    </div>
+                <div className="flex flex-col w-1/2 mt-20 items-center justify-center">
+                    {
+                        Object.values(cart).map((item) => (
+                             <CartItem key={item.id} item={item} />
+                        ))
+                    }
+                </div>
+
                     <div className="mt-20 w-1/2 flex flex-col items-center select-none">
                         <div className="flex flex-col items-center mb-10">
                             <div className="font-bold text-8xl text-center mb-4 text-[#8bc34a]">Your Cart</div>

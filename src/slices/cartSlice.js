@@ -4,7 +4,7 @@ const updateItem = (cartItems, item) => {
     if (cartItems[item.id]) {
         cartItems[item.id].quantity += item.quantity;
     } else {
-        cartItems[item.id] = item;
+        cartItems[item.id] = { ...item }; 
     }
 };
 
@@ -17,9 +17,13 @@ export const CartSlice = createSlice({
         add: (state, action) => {
             const { userId, item } = action.payload;
             if (!state.usersCarts[userId]) {
-                state.usersCarts[userId] = { items: {} };
+                state.usersCarts[userId] = { items: {} }; 
             }
-            updateItem(state.usersCarts[userId].items, item);
+            updateItem(state.usersCarts[userId].items, {
+                ...item,
+                imageUrl: item.image,
+            });
+            
         },
         remove: (state, action) => {
             const { userId, itemId } = action.payload;
