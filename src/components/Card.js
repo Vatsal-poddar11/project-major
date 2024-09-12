@@ -36,29 +36,33 @@ const Card = ({ id, name, info, image, price, userId }) => {
 
   const addToCartHandler = () => {
     console.log('Adding item to cart', { userId, item: { id, name, price, quantity, image } });
-    dispatch(add({ userId, item: { id, name, price, quantity, image} }));
+    dispatch(add({ userId, item: { id, name, price, quantity, image } }));
     setIsAdded(true);
   };
 
   return (
-    <div className='bg-white shadow-lg rounded-lg overflow-hidden transform transition hover:scale-105 duration-300'>
-      {/* Image */}
+    <div className='bg-white shadow-xl rounded-lg overflow-hidden transform transition-all hover:scale-105 hover:shadow-2xl duration-300'>
+      {/* Image Section */}
       <img
         src={image}
         alt={name}
         className='w-full scale-90 h-64 object-cover object-center rounded-t-lg'
       />
       
-      <div className='p-4'>
+      <div className='p-6'>
         <div className='flex justify-between items-center'>
-          <h4 className='text-lg font-semibold'>{name}</h4>
-          <h4 className='text-lg font-semibold text-green-600'>₹ {price}</h4>
+          <h4 className='text-xl font-bold text-gray-800'>{name}</h4>
+          <h4 className='text-lg font-semibold text-[#32a852]'>₹ {price}</h4>
         </div>
-        <p className='text-sm text-gray-600 mt-2'>{description}</p>
-
+        
+        {/* Description */}
+        <p className='text-sm text-gray-600 mt-2 leading-relaxed'>
+          {description}
+        </p>
+        
         {/* Read More Button */}
         <span
-          className='text-blue-600 cursor-pointer mt-2 inline-block hover:text-blue-800 transition-colors duration-200'
+          className='text-[#007bff] cursor-pointer mt-2 inline-block font-medium hover:text-[#0056b3] transition-colors duration-200'
           onClick={readMoreHandler}
         >
           {readMore ? 'Show Less' : 'Read More'}
@@ -68,27 +72,27 @@ const Card = ({ id, name, info, image, price, userId }) => {
         <div className='flex items-center mt-4'>
           {!isAdded ? (
             <button
-              className='bg-blue-500 text-black border border-blue-600 py-1 px-3 rounded hover:bg-blue-600 transition-colors duration-200'
+              className='bg-[#048663bd] text-white font-semibold py-2 px-4 rounded-full hover:bg-[#0056b3] transition-all duration-200 shadow-lg'
               onClick={addToCartHandler}
             >
               Add to Cart
             </button>
           ) : (
-            <>
+            <div className='flex items-center'>
               <button
-                className='bg-gray-200 text-gray-800 border border-gray-400 py-1 px-2 rounded ml-2 hover:bg-gray-300 transition-colors duration-200'
+                className='bg-[#f0f0f0] text-gray-800 border border-[#dcdcdc] py-1 px-3 rounded-full hover:bg-[#e0e0e0] transition-all duration-200'
                 onClick={decrementQuantity}
               >
                 -
               </button>
-              <span className='ml-2'>{quantity}</span>
+              <span className='mx-4 text-lg font-semibold'>{quantity}</span>
               <button
-                className='bg-gray-200 text-gray-800 border border-gray-400 py-1 px-2 rounded ml-2 hover:bg-gray-300 transition-colors duration-200'
+                className='bg-[#f0f0f0] text-gray-800 border border-[#dcdcdc] py-1 px-3 rounded-full hover:bg-[#e0e0e0] transition-all duration-200'
                 onClick={incrementQuantity}
               >
                 +
               </button>
-            </>
+            </div>
           )}
         </div>
       </div>

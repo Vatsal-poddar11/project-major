@@ -83,7 +83,7 @@ const Navbar = () => {
                         <>  
                             <NavLink to="/cart">
                                 <div>
-                                    <FaShoppingCart className="text-[#333333] hover:text-[#8bc34a] text-xl transition ease-in duration-100"/>
+                                    <FaShoppingCart className="text-[#333333] hover:text-[#048663bd] text-xl transition ease-in duration-100"/>
                                 </div>
                             </NavLink>
                             <NavLink to="/dashboard">
