@@ -10,6 +10,7 @@ import Contact from './pages/Contact';
 import Dashboard from "./pages/Dashboard";
 import OpenRoute from './components/OpenRoute';
 import EditProfile from "./pages/EditProfile";
+import About from './pages/About';
 
 import { Route, Routes } from 'react-router-dom';
 
@@ -27,6 +28,7 @@ function App() {
         <Route path="cart" element={<Cart/>}></Route>
         <Route path="dashboard" element={<Dashboard/>} />
         <Route path="edit" element={<EditProfile/>} />
+        <Route path="about" element={<About/>} />
       </Routes>
     </div>
   );
