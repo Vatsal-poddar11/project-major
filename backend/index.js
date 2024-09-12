@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 
 const userRoutes = require("./routes/User");
+const profileRoutes = require("./routes/Profile");
 
 const database = require("./config/database");
 const cookieParser = require("cookie-parser");
@@ -38,6 +39,7 @@ app.options('*', cors(corsOptions)); // Enable pre-flight requests for all route
 
 //routes
 app.use("/api/v1/auth", userRoutes);
+app.use("/api/v1/profile", profileRoutes);
 
 //def route
 app.get("/", (req, res) => {
