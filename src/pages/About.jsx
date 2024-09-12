@@ -7,8 +7,8 @@ const About = () => {
       <div className="container mx-auto p-6">
         <div className="bg-white shadow-xl rounded-lg overflow-hidden">
           {/* Modernized Header Section */}
-          <div className="relative bg-gradient-to-r bg-[#2df9ec] text-center text-white py-20 px-6">
-            <div className="absolute inset-0 bg-black opacity-50"></div>
+          <div className="relative bg-gradient-to-r bg-richblack-800 text-center text-white py-20 px-6">
+            <div className="absolute inset-0 opacity-50"></div>
             <div className="relative z-10">
               <h1 className="text-5xl font-extrabold mb-8 drop-shadow-lg transform transition-transform duration-500 hover:scale-105">
                 Welcome to India's Leading Digital Healthcare Platform
