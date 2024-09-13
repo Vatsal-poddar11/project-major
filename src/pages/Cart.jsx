@@ -5,6 +5,7 @@ import { FaShoppingCart } from 'react-icons/fa';
 
 const Cart = () => {
     const userId = useSelector((state) => state.auth.userId);
+    const token = useSelector((state) => state.auth.token); 
     const usersCarts = useSelector((state) => state.cart.usersCarts);
     const cart = usersCarts[userId]?.items || {}; 
     const [totalAmount, setTotalAmount] = useState(0);
@@ -15,7 +16,7 @@ const Cart = () => {
         );
     }, [cart]);
 
-    // Function to load the Razorpay SDK dynamically
+    // Load the Razorpay SDK dynamically
     const loadRazorpayScript = () => {
         return new Promise((resolve) => {
             const script = document.createElement('script');
@@ -26,9 +27,8 @@ const Cart = () => {
         });
     };
 
-    // Function to handle the checkout process and Razorpay payment
+    // Handle checkout process and Razorpay payment
     const handleCheckout = async () => {
-        // First, load Razorpay script
         const isScriptLoaded = await loadRazorpayScript();
         if (!isScriptLoaded) {
             alert('Razorpay SDK failed to load. Are you online?');
@@ -36,14 +36,15 @@ const Cart = () => {
         }
 
         try {
-            // Call your backend to create a Razorpay order and get order details
+            // Call backend to create a Razorpay order and get order details
             const response = await fetch('http://localhost:4000/api/v1/payment/capture-payment', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`, 
                 },
                 body: JSON.stringify({
-                    totalAmount: totalAmount, // Send total amount to backend
+                    totalAmount: totalAmount, 
                 }),
             });
 
@@ -69,10 +70,11 @@ const Cart = () => {
                         razorpay_signature: response.razorpay_signature,
                     };
 
-                    fetch('/api/v1/payment/verify-signature', {
+                    fetch('http://localhost:4000/api/v1/payment/verify-signature', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`,
                         },
                         body: JSON.stringify(paymentData),
                     })
@@ -87,20 +89,20 @@ const Cart = () => {
                         });
                 },
                 prefill: {
-                    name: "Customer Name", // Prefilled name
-                    email: "customer@example.com", // Prefilled email
-                    contact: "9999999999", // Prefilled phone number
+                    name: "Customer Name", 
+                    email: "customer@example.com", 
+                    contact: "9999999999", 
                 },
                 notes: {
                     address: "Customer's Address",
                 },
                 theme: {
-                    color: "#4A90E2", // Custom theme color
+                    color: "#4A90E2", 
                 },
             };
 
             const razorpayInstance = new window.Razorpay(options);
-            razorpayInstance.open(); // Open the Razorpay checkout modal
+            razorpayInstance.open(); 
 
         } catch (error) {
             console.error('Error during checkout:', error);

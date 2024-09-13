@@ -42,7 +42,6 @@ const Card = ({ id, name, info, image, price, userId }) => {
 
   return (
     <div className='bg-white shadow-xl rounded-lg overflow-hidden transform transition-all hover:scale-105 hover:shadow-2xl duration-300'>
-      {/* Image Section */}
       <img
         src={image}
         alt={name}
@@ -55,12 +54,10 @@ const Card = ({ id, name, info, image, price, userId }) => {
           <h4 className='text-lg font-semibold text-[#32a852]'>₹ {price}</h4>
         </div>
         
-        {/* Description */}
         <p className='text-sm text-gray-600 mt-2 leading-relaxed'>
           {description}
         </p>
         
-        {/* Read More Button */}
         <span
           className='text-[#007bff] cursor-pointer mt-2 inline-block font-medium hover:text-[#0056b3] transition-colors duration-200'
           onClick={readMoreHandler}
@@ -68,7 +65,6 @@ const Card = ({ id, name, info, image, price, userId }) => {
           {readMore ? 'Show Less' : 'Read More'}
         </span>
 
-        {/* Add to Cart Section */}
         <div className='flex items-center mt-4'>
           {!isAdded ? (
             <button

@@ -6,26 +6,25 @@ exports.capturePayment = async (req, res) => {
     try {
         console.log('Request Body:', req.body);
         const { totalAmount } = req.body;
-        console.log("Total: ", totalAmount);
 
         const userId = req.user.id;
         console.log("User Id : ", req.user.id);
 
-        // Validate totalAmount is a number and greater than zero
         if (isNaN(totalAmount) || totalAmount <= 0) {
             return res.status(400).json({ message: "Invalid total amount" });
         }
 
-        // Create Razorpay order options
         const options = {
-            amount: totalAmount * 100, // Amount in paise
+            amount: totalAmount * 100, 
             currency: "INR",
-            receipt: `receipt_${userId}_${Date.now()}`,
+            receipt: `r${userId}_${Date.now()}`,
         };
+
+        console.log("Options : ", options);
         
-        // Create order
         const order = await instance.orders.create(options);
-        console.log('Razorpay Order Response:', order); // Add this line for debugging
+        console.log("Razorpay Order created:", order);
+         
 
         if (!order || !order.id) {
             throw new Error('Failed to create order');
