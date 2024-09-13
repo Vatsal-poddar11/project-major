@@ -5,11 +5,15 @@ import { FaShoppingCart } from 'react-icons/fa';
 
 const Cart = () => {
     const userId = useSelector((state) => state.auth.userId);
-    const token = useSelector((state) => state.auth.token); 
+    const token = useSelector((state) => state.auth.token); // Fetch the token from Redux store
     const usersCarts = useSelector((state) => state.cart.usersCarts);
     const cart = usersCarts[userId]?.items || {}; 
     const [totalAmount, setTotalAmount] = useState(0);
+    const [deliveryCost, setDeliveryCost] = useState(0);
+    const [locationFetched, setLocationFetched] = useState(false);
+    const storeLocation = { latitude: 28.7041, longitude: 77.1025 }; // Example static store location (Delhi)
 
+    // Calculate total cart amount
     useEffect(() => {
         setTotalAmount(
             Object.values(cart).reduce((acc, curr) => acc + (parseFloat(curr.price) * (curr.quantity || 1)), 0)
@@ -28,7 +32,7 @@ const Cart = () => {
     };
 
     // Handle checkout process and Razorpay payment
-    const handleCheckout = async () => {
+    const handlePayment = async () => {
         const isScriptLoaded = await loadRazorpayScript();
         if (!isScriptLoaded) {
             alert('Razorpay SDK failed to load. Are you online?');
@@ -41,7 +45,7 @@ const Cart = () => {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`, 
+                    'Authorization': `Bearer ${token}`,  // Use token here
                 },
                 body: JSON.stringify({
                     totalAmount: totalAmount, 
@@ -74,7 +78,7 @@ const Cart = () => {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${token}`,
+                            'Authorization': `Bearer ${token}`, // Use token here
                         },
                         body: JSON.stringify(paymentData),
                     })
@@ -109,6 +113,40 @@ const Cart = () => {
         }
     };
 
+    // Get user location and calculate delivery cost based on distance
+    const handleLocationPermission = () => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const { latitude, longitude } = position.coords;
+                    const distance = calculateDistance(storeLocation.latitude, storeLocation.longitude, latitude, longitude);
+                    const deliveryCharge = distance * 0.5; // Example: $0.5 per km
+                    setDeliveryCost(deliveryCharge);
+                    setLocationFetched(true);
+                },
+                (error) => {
+                    console.error("Error fetching location:", error);
+                    alert("Unable to retrieve your location.");
+                }
+            );
+        } else {
+            alert("Geolocation is not supported by this browser.");
+        }
+    };
+
+    // Function to calculate distance between two coordinates (Haversine formula)
+    const calculateDistance = (lat1, lon1, lat2, lon2) => {
+        const R = 6371; // Radius of the Earth in km
+        const dLat = (lat2 - lat1) * (Math.PI / 180);
+        const dLon = (lon2 - lon1) * (Math.PI / 180);
+        const a = 
+            Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+            Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) *
+            Math.sin(dLon / 2) * Math.sin(dLon / 2);
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        return R * c; // Distance in km
+    };
+
     return (
         <div className="flex flex-col items-center bg-[#F7F7F7] min-h-screen py-10">
             {Object.keys(cart).length > 0 ? (
@@ -132,7 +170,6 @@ const Cart = () => {
                                 >
                                     {/* Image and Item Details */}
                                     <div className="flex items-center gap-3">
-                                        {/* Small Image of the Cart Item */}
                                         <img
                                             src={item.image || "https://via.placeholder.com/100"}
                                             alt={item.name}
@@ -158,17 +195,36 @@ const Cart = () => {
                             <p className="text-[#333333] text-xl font-medium mb-3">
                                 Total Items: <span>{Object.keys(cart).length}</span>
                             </p>
-                            <p className="text-[#333333] text-xl font-medium mb-6">
+                            <p className="text-[#333333] text-xl font-medium mb-3">
                                 Total Amount: <span>${totalAmount.toFixed(2)}</span>
                             </p>
+                            {locationFetched && (
+                                <p className="text-[#333333] text-xl font-medium mb-3">
+                                    Delivery Cost: <span>${deliveryCost.toFixed(2)}</span>
+                                </p>
+                            )}
+                            {locationFetched && (
+                                <p className="text-[#333333] text-xl font-medium mb-3">
+                                    Total with Delivery: <span>${(totalAmount + deliveryCost).toFixed(2)}</span>
+                                </p>
+                            )}
                         </div>
 
-                        <button
-                            onClick={handleCheckout}
-                            className="bg-[#4A90E2] text-white py-3 px-8 rounded-full shadow-md hover:bg-[#357ABD] transition-transform transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
-                        >
-                            Checkout Now
-                        </button>
+                        {!locationFetched ? (
+                            <button
+                                onClick={handleLocationPermission}
+                                className="bg-[#F5A623] text-white py-3 px-8 rounded-full shadow-md hover:bg-[#F7C948] transition-transform transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+                            >
+                                Calculate Delivery Cost
+                            </button>
+                        ) : (
+                            <button
+                                onClick={handlePayment}
+                                className="bg-[#4A90E2] text-white py-3 px-8 rounded-full shadow-md hover:bg-[#357ABD] transition-transform transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+                            >
+                                Proceed to Pay
+                            </button>
+                        )}
                     </div>
                 </div>
             ) : (
