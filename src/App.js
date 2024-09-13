@@ -11,8 +11,10 @@ import Dashboard from "./pages/Dashboard";
 import OpenRoute from './components/OpenRoute';
 import EditProfile from "./pages/EditProfile";
 import About from './pages/About';
-
+import Consult from "./pages/Consult";
 import { Route, Routes } from 'react-router-dom';
+import Suggestions from './pages/Suggestions';
+import Subscription from "./pages/Subscription";
 
 function App() {
   return (
@@ -29,6 +31,9 @@ function App() {
         <Route path="dashboard" element={<Dashboard/>} />
         <Route path="edit" element={<EditProfile/>} />
         <Route path="about" element={<About/>} />
+        <Route path="consult" element={<Consult/>} />
+        <Route path="ai-suggestions" element={<Suggestions/>} />
+        <Route path="subscription" element={<Subscription/>} />
       </Routes>
     </div>
   );
