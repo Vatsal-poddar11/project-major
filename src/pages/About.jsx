@@ -121,7 +121,7 @@ const About = () => {
               <div className="bg-white shadow-lg rounded-lg overflow-hidden">
                 <iframe
                   title="MedKart Location"
-                  src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3837.9867076952546!2d85.82012294096286!3d20.349459322081913!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sen!2sin!4v1726143034778!5m2!1sen!2sin"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3740.705699973638!2d85.82005917377549!3d20.35377311062224!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a19093de6b8a739%3A0x562cc3cfa4de965e!2sSJ%20Complex%2C%20Thrishna%20Villa%20Phase-II%20Rd%2C%20Aryapalli%2C%20Patia%2C%20Bhubaneswar%2C%20Odisha%20751024!5e0!3m2!1sen!2sin!4v1726251348645!5m2!1sen!2sin"
                   className="w-full h-full"
                   allowFullScreen=""
                   loading="lazy"
@@ -129,7 +129,7 @@ const About = () => {
               </div>
             </div>
           </div>
-
+         
           {/* Follow Us Section */}
           <div className="bg-[#eef2ff] text-center py-6">
             <h2 className="text-2xl font-bold text-[#3e415b] mb-4">Follow Us</h2>

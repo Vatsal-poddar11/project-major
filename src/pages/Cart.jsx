@@ -10,8 +10,9 @@ const Cart = () => {
     const cart = usersCarts[userId]?.items || {}; 
     const [totalAmount, setTotalAmount] = useState(0);
     const [deliveryCost, setDeliveryCost] = useState(0);
+    const [totalDistance, setTotalDistance] = useState(0); // New state for total distance
     const [locationFetched, setLocationFetched] = useState(false);
-    const storeLocation = { latitude: 28.7041, longitude: 77.1025 }; // Example static store location (Delhi)
+    const storeLocation = { latitude:20.353858611736086, longitude: 85.82268773909541 }; // Bhubaneswar coordinates
 
     // Calculate total cart amount
     useEffect(() => {
@@ -59,7 +60,6 @@ const Cart = () => {
                 return;
             }
 
-            console.log("Hello RazorPay Options");
             const options = {
                 key: process.env.REACT_APP_RAZORPAY_KEY_ID,
                 amount: data.amount,
@@ -120,8 +120,9 @@ const Cart = () => {
                 (position) => {
                     const { latitude, longitude } = position.coords;
                     const distance = calculateDistance(storeLocation.latitude, storeLocation.longitude, latitude, longitude);
-                    const deliveryCharge = distance * 0.5; // Example: $0.5 per km
+                    const deliveryCharge = distance * 0.5 * 50; // Example: ₹ 0.5 per km
                     setDeliveryCost(deliveryCharge);
+                    setTotalDistance(distance); // Set the total distance
                     setLocationFetched(true);
                 },
                 (error) => {
@@ -183,7 +184,7 @@ const Cart = () => {
 
                                     {/* Price and Quantity */}
                                     <div className="text-right">
-                                        <p className="font-semibold">${item.price}</p>
+                                        <p className="font-semibold">₹ {item.price}</p>
                                         <p className="text-xs">Qty: {item.quantity}</p>
                                     </div>
                                 </div>
@@ -196,17 +197,20 @@ const Cart = () => {
                                 Total Items: <span>{Object.keys(cart).length}</span>
                             </p>
                             <p className="text-[#333333] text-xl font-medium mb-3">
-                                Total Amount: <span>${totalAmount.toFixed(2)}</span>
+                                Total Amount: <span>₹ {totalAmount.toFixed(2)}</span>
                             </p>
                             {locationFetched && (
-                                <p className="text-[#333333] text-xl font-medium mb-3">
-                                    Delivery Cost: <span>${deliveryCost.toFixed(2)}</span>
-                                </p>
-                            )}
-                            {locationFetched && (
-                                <p className="text-[#333333] text-xl font-medium mb-3">
-                                    Total with Delivery: <span>${(totalAmount + deliveryCost).toFixed(2)}</span>
-                                </p>
+                                <>
+                                    <p className="text-[#333333] text-xl font-medium mb-3">
+                                        Distance: <span>{totalDistance.toFixed(2)} km</span>
+                                    </p>
+                                    <p className="text-[#333333] text-xl font-medium mb-3">
+                                        Delivery Cost: <span>₹ {deliveryCost.toFixed(2)}</span>
+                                    </p>
+                                    <p className="text-[#333333] text-xl font-medium mb-3">
+                                        Total with Delivery: <span>₹ {(totalAmount + deliveryCost).toFixed(2)}</span>
+                                    </p>
+                                </>
                             )}
                         </div>
 
