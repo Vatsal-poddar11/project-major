@@ -13,7 +13,6 @@ const Cart = () => {
     const [totalDistance, setTotalDistance] = useState(0); // New state for total distance
     const [locationFetched, setLocationFetched] = useState(false);
     const storeLocation = { latitude:20.353858611736086, longitude: 85.82268773909541 }; // Bhubaneswar coordinates
-
     // Calculate total cart amount
     useEffect(() => {
         setTotalAmount(
@@ -49,6 +48,7 @@ const Cart = () => {
                     'Authorization': `Bearer ${token}`,  // Use token here
                 },
                 body: JSON.stringify({
+                    
                     totalAmount: totalAmount, 
                 }),
             });
