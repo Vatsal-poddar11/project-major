@@ -15,6 +15,7 @@ import Consult from "./pages/Consult";
 import { Route, Routes } from 'react-router-dom';
 import Suggestions from './pages/Suggestions';
 import Subscription from "./pages/Subscription";
+import Blog from './pages/Blog';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
         <Route path="consult" element={<Consult/>} />
         <Route path="ai-suggestions" element={<Suggestions/>} />
         <Route path="subscription" element={<Subscription/>} />
+        <Route path="/blog" element={<Blog />} />
       </Routes>
     </div>
   );

@@ -45,6 +45,11 @@ const Navbar = () => {
                             About
                         </p>
                     </NavLink>
+                    <NavLink to="/blog">
+                    <p className={`${matchRoute("/blog") ? "text-yellow-100" : "text-black"}`}>
+                    Blogs
+                    </p>
+                    </NavLink>
                     <NavLink to="/contact">
                         <p className={`${matchRoute("/contact") ? "text-yellow-200" : "text-black"}`}>
                             Contact
