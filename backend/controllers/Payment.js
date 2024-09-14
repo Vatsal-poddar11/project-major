@@ -15,7 +15,7 @@ exports.capturePayment = async (req, res) => {
         }
 
         const options = {
-            amount: totalAmount * 100, 
+            amount: (totalAmount * 100).toFixed(0), 
             currency: "INR",
             receipt: `r${userId}_${Date.now()}`,
         };
