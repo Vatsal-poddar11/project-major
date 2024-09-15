@@ -111,7 +111,7 @@ const About = () => {
                     <i className="far fa-envelope text-[#3bb896] text-2xl mr-4"></i>
                     <div>
                       <p className="font-bold">Email:</p>
-                      <p>medkart@gmail.com</p>
+                      <p>storelinks1@gmail.com</p>
                     </div>
                   </li>
                 </ul>

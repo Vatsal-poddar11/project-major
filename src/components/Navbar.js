@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink, useLocation, matchPath, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import logo from "../assets/logo.jpeg";
-import { AiFillMedicineBox, AiOutlineMenu, AiOutlineClose, AiOutlineEnvironment } from "react-icons/ai";
+import logo from "../assets/logo.png";
+import { AiOutlineMenu, AiOutlineClose, AiOutlineEnvironment } from "react-icons/ai";
 import { logout } from "../services/operations/authAPI";
 import { CgProfile } from "react-icons/cg";
 import { FaShoppingCart } from "react-icons/fa";
+import { MdOutlineHealthAndSafety } from "react-icons/md";
 
 const API_KEY = process.env.REACT_APP_PINCODE_API_KEY;
 
@@ -67,19 +68,19 @@ const Navbar = () => {
             <div className="flex w-11/12 max-w-maxContent items-center justify-between">
 
                 <NavLink to="/">
-                    <div className="flex items-center gap-x-2 rounded-md p-2 bg-transparent">
-                        <AiFillMedicineBox className="text-[#000000] h-5 w-5" />
+                    <div className="flex items-center gap-x-2 rounded-md p-2 bg-transparent justify-start">
+                        <MdOutlineHealthAndSafety className="text-[#000000] h-5 w-5" />
                         <img
                             src={logo}
                             alt="Logo"
-                            className="w-[50px] h-[50px] rounded-full shadow-lg mix-blend-multiply transition-all duration-300 ease-in-out hover:scale-110"
+                            className="w-[120px] bg-transparent h-[50px] gap-x-2 mix-blend-multiply"
                             loading="lazy"
                         />
 
                         {userLocation && (
-                            <div className="flex items-center gap-x-1">
-                                <AiOutlineEnvironment className="text-[#555555] h-4 w-4" />
-                                <p className="text-[#555555] text-xs">{userLocation}</p>
+                            <div className="flex items-center font-medium gap-x-1">
+                                <AiOutlineEnvironment className="ml-2 font-black text-[#222222] h-6 w-4" />
+                                <p className="text-[#2c2c2c] text-xs">{userLocation}</p>
                             </div>
                         )}
                     </div>
