@@ -41,38 +41,40 @@ const Suggestions = () => {
   };
 
   return (
-    <div className="p-8 bg-[#F7F8FA] min-h-screen">
-      <h1 className="text-3xl font-bold mb-6 text-[#1A202C] text-center">Health Suggestions</h1>
+    <div className="p-8 bg-gradient-to-r from-[#656996] to-[#5183da] min-h-screen">
+      <h1 className="text-3xl font-bold mb-6 text-[#ffffff] text-center">
+        Health Suggestions
+      </h1>
 
-      <form onSubmit={handleSubmit} className="mb-8 bg-white p-6 rounded-lg shadow-md max-w-md mx-auto">
+      <form onSubmit={handleSubmit} className="mb-8 bg-white p-6 rounded-lg shadow-lg max-w-md mx-auto">
         <input
           type="text"
           value={symptoms}
           onChange={(e) => setSymptoms(e.target.value)}
           placeholder="Enter your symptoms"
-          className="border border-[#D1D5DB] p-3 w-full rounded-lg focus:outline-none focus:border-[#2563EB] transition"
+          className="border border-[#d1d5db] p-3 w-full rounded-lg focus:outline-none focus:border-[#2563eb] transition"
           required
         />
         <button
           type="submit"
-          className="bg-[#3B82F6] text-[#FFFFFF] px-4 py-2 rounded-lg w-full mt-4 hover:bg-[#2563EB] transition disabled:bg-gray-400"
+          className="bg-[#3b82f6] text-[#ffffff] px-4 py-2 rounded-lg w-full mt-4 hover:bg-[#2563eb] transition disabled:bg-gray-400"
           disabled={loading}
         >
           {loading ? 'Loading...' : 'Get Suggestions'}
         </button>
       </form>
 
-      {error && <p className="text-center text-[#EF4444]">{error}</p>}
+      {error && <p className="text-center text-[#ef4444]">{error}</p>}
 
       {formattedSuggestions.length > 0 && (
-        <div className="mt-8 max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-md">
+        <div className="mt-8 max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-lg">
           {formattedSuggestions.map((suggestion, index) => (
             <React.Fragment key={index}>
               {suggestion.type === 'heading' && (
-                <h2 className="text-xl font-bold text-[#1A202C] mb-4">{suggestion.content}</h2>
+                <h2 className="text-xl font-bold text-[#1a202c] mb-4">{suggestion.content}</h2>
               )}
               {suggestion.type === 'content' && (
-                <p className="text-[#4B5563] mb-2">{suggestion.content}</p>
+                <p className="text-[#4b5563] mb-2">{suggestion.content}</p>
               )}
               {suggestion.type === 'newLine' && <br />}
             </React.Fragment>
@@ -81,7 +83,7 @@ const Suggestions = () => {
       )}
 
       <footer className="text-center mt-12">
-        <p className="text-sm text-[#6B7280]">
+        <p className="text-sm text-[#e3fd3b]">
           <strong>Note:</strong> Please consult a doctor or medical professional for any health concerns.
         </p>
       </footer>

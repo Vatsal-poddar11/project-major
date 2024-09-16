@@ -14,7 +14,7 @@ const Catalog = () => {
   );
 
   return (
-    <div className='container mx-auto p-6'>
+    <div className='container mx-auto p-6 bg-gradient-to-r from-[#2b2d42] to-[#8d99ae]'>
       <SearchBar query={query} setQuery={setQuery} />
 
       {/* Check if there are no matching results */}
@@ -22,9 +22,11 @@ const Catalog = () => {
         <Medicines medicines={filteredMedicines} />
       ) : (
         <div className='text-center'>
-          <p className='text-2xl mt-20 font-semibold mb-4'>Sorry, the medicine is unavailable right now.</p>
+          <p className='text-2xl font-semibold text-[#2b2d42] mt-20 mb-4'>
+            Sorry, the medicine is unavailable right now.
+          </p>
           <button
-            className="px-5 py-2 bg-[#fbb92cc7] text-richblack-600 text-md font-medium rounded-full shadow-lg hover:bg-[#ddaa3c] transition duration-300"
+            className="px-5 py-2 bg-[#fbb92c] text-[#2b2d42] text-md font-medium rounded-full shadow-lg hover:bg-[#e09e1d] transition duration-300"
             onClick={() => toast.success('Request Submitted!')} 
           >
             Request Product
@@ -36,4 +38,3 @@ const Catalog = () => {
 }
 
 export default Catalog;
-

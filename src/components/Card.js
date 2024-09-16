@@ -41,20 +41,20 @@ const Card = ({ id, name, info, image, price, userId }) => {
   };
 
   return (
-    <div className='bg-white shadow-xl rounded-lg overflow-hidden transform transition-all hover:scale-105 hover:shadow-2xl duration-300'>
+    <div className='bg-[#ffffff] shadow-lg rounded-lg overflow-hidden transform transition-all hover:scale-105 hover:shadow-xl duration-300'>
       <img
         src={image}
         alt={name}
-        className='w-full scale-90 h-64 object-cover object-center rounded-t-lg'
+        className='w-full h-64 object-cover scale-90 object-center rounded-t-lg'
       />
       
       <div className='p-6'>
         <div className='flex justify-between items-center'>
-          <h4 className='text-xl font-bold text-gray-800'>{name}</h4>
-          <h4 className='text-lg font-semibold text-[#32a852]'>₹ {price}</h4>
+          <h4 className='text-xl font-bold text-[#2b2d42]'>{name}</h4>
+          <h4 className='text-lg font-semibold text-[#8d99ae]'>₹ {price}</h4>
         </div>
         
-        <p className='text-sm text-gray-600 mt-2 leading-relaxed'>
+        <p className='text-sm text-[#4d5460] mt-2 leading-relaxed'>
           {description}
         </p>
         
@@ -68,7 +68,7 @@ const Card = ({ id, name, info, image, price, userId }) => {
         <div className='flex items-center mt-4'>
           {!isAdded ? (
             <button
-              className='bg-[#048663bd] text-white font-semibold py-2 px-4 rounded-full hover:bg-[#0056b3] transition-all duration-200 shadow-lg'
+              className='bg-[#2b2d42] text-white font-semibold py-2 px-4 rounded-full hover:bg-[#1e2531] transition-all duration-200 shadow-md'
               onClick={addToCartHandler}
             >
               Add to Cart
@@ -76,14 +76,14 @@ const Card = ({ id, name, info, image, price, userId }) => {
           ) : (
             <div className='flex items-center'>
               <button
-                className='bg-[#f0f0f0] text-gray-800 border border-[#dcdcdc] py-1 px-3 rounded-full hover:bg-[#e0e0e0] transition-all duration-200'
+                className='bg-[#e0e0e0] text-[#333333] border border-[#dcdcdc] py-1 px-3 rounded-full hover:bg-[#d0d0d0] transition-all duration-200'
                 onClick={decrementQuantity}
               >
                 -
               </button>
-              <span className='mx-4 text-lg font-semibold'>{quantity}</span>
+              <span className='mx-4 text-lg font-semibold text-[#2b2d42]'>{quantity}</span>
               <button
-                className='bg-[#f0f0f0] text-gray-800 border border-[#dcdcdc] py-1 px-3 rounded-full hover:bg-[#e0e0e0] transition-all duration-200'
+                className='bg-[#e0e0e0] text-[#333333] border border-[#dcdcdc] py-1 px-3 rounded-full hover:bg-[#d0d0d0] transition-all duration-200'
                 onClick={incrementQuantity}
               >
                 +

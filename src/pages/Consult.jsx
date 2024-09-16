@@ -14,8 +14,8 @@ const Consult = () => {
   };
 
   return (
-    <div className="text-center py-10 px-4 sm:px-6 lg:px-8">
-      <h1 className="text-2xl sm:text-3xl font-bold mb-10 text-[#333333]">
+    <div className="text-center py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-[#2b2d42] to-[#8d99ae]">
+      <h1 className="text-2xl sm:text-3xl font-bold mb-10 text-[#ffffff]">
         Consult a Doctor or Explore AI-Powered Health Suggestions
       </h1>
 
@@ -25,7 +25,7 @@ const Consult = () => {
             <h2 className="text-xl sm:text-2xl font-semibold text-[#1f2937]">
               Book an Appointment
             </h2>
-            <FaUserMd className="text-5xl sm:text-7xl text-richblack-700 mb-4" />
+            <FaUserMd className="text-5xl sm:text-7xl text-[#1f2937] mb-4" />
           </div>
           <p className="mb-4 text-[#4b5563]">
             Get personalized consultation from a doctor.
@@ -48,7 +48,8 @@ const Consult = () => {
 
           <button 
             onClick={handleSuggestions} 
-            className="bg-[#10b981] text-[#ffffff] px-4 sm:px-6 py-2 sm:py-3 rounded hover:bg-[#059669]">
+            className="bg-[#10b981] text-[#ffffff] px-4 sm:px-6 py-2 sm:py-3 rounded hover:bg-[#059669]"
+          >
             Get Suggestions
           </button>
 
