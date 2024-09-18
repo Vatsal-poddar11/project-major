@@ -41,18 +41,18 @@ const Suggestions = () => {
   };
 
   return (
-    <div className="p-8 bg-gradient-to-r from-[#656996] to-[#5183da] min-h-screen">
+    <div className="p-8 bg-gradient-to-r from-[#2b2d42] to-[#8d99ae] min-h-screen">
       <h1 className="text-3xl font-bold mb-6 text-[#ffffff] text-center">
         Health Suggestions
       </h1>
 
-      <form onSubmit={handleSubmit} className="mb-8 bg-white p-6 rounded-lg shadow-lg max-w-md mx-auto">
+      <form onSubmit={handleSubmit} className="mb-8 bg-[#ffffff] p-6 rounded-lg shadow-lg max-w-md mx-auto">
         <input
           type="text"
           value={symptoms}
           onChange={(e) => setSymptoms(e.target.value)}
           placeholder="Enter your symptoms"
-          className="border border-[#d1d5db] p-3 w-full rounded-lg focus:outline-none focus:border-[#2563eb] transition"
+          className="border border-[#d1d5db] p-3 w-full rounded-lg focus:outline-none focus:border-[#3b82f6] transition"
           required
         />
         <button
@@ -67,11 +67,11 @@ const Suggestions = () => {
       {error && <p className="text-center text-[#ef4444]">{error}</p>}
 
       {formattedSuggestions.length > 0 && (
-        <div className="mt-8 max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-lg">
+        <div className="mt-8 max-w-2xl mx-auto bg-[#ffffff] p-6 rounded-lg shadow-lg">
           {formattedSuggestions.map((suggestion, index) => (
             <React.Fragment key={index}>
               {suggestion.type === 'heading' && (
-                <h2 className="text-xl font-bold text-[#1a202c] mb-4">{suggestion.content}</h2>
+                <h2 className="text-xl font-bold text-[#1f2937] mb-4">{suggestion.content}</h2>
               )}
               {suggestion.type === 'content' && (
                 <p className="text-[#4b5563] mb-2">{suggestion.content}</p>

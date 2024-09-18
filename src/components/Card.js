@@ -41,14 +41,16 @@ const Card = ({ id, name, info, image, price, userId }) => {
   };
 
   return (
-    <div className='bg-[#ffffff] shadow-lg rounded-lg overflow-hidden transform transition-all hover:scale-105 hover:shadow-xl duration-300'>
-      <img
-        src={image}
-        alt={name}
-        className='w-full h-64 object-cover scale-90 object-center rounded-t-lg'
-      />
-      
-      <div className='p-6'>
+    <div className='bg-[#f3f4f6] shadow-lg rounded-lg overflow-hidden transform transition-all hover:scale-105 hover:shadow-xl duration-300'>
+      <div className='overflow-hidden'>
+        <img
+          src={image}
+          alt={name}
+          className='w-full h-48 object-cover scale-90 object-center transition-transform duration-300 ease-in-out hover:scale-105'
+        />
+      </div>
+
+      <div className='p-6 bg-[#ffffff]'>
         <div className='flex justify-between items-center'>
           <h4 className='text-xl font-bold text-[#2b2d42]'>{name}</h4>
           <h4 className='text-lg font-semibold text-[#8d99ae]'>₹ {price}</h4>
