@@ -121,14 +121,14 @@ const Navbar = () => {
 
                 <div className="hidden md:flex gap-x-2 items-center">
                     {token === null && (
-                        <div className="flex gap-x-2">
+                        <div className="flex">
                             <NavLink to="/login">
-                                <button className="border border-[#1F2937] bg-[#111827] hover:bg-[#1414140b] px-4 py-2 text-[#F3F4F6] rounded-md transition-all duration-150">
+                                <button className="border border-[#111827] bg-[#111827] hover:bg-[#111827] px-5 py-2 text-[#F3F4F6] rounded-l-full transition-all duration-150">
                                     Log in
                                 </button>
                             </NavLink>
                             <NavLink to="/signup">
-                                <button className="border border-[#1F2937] bg-[#111827] hover:bg-[#1414140b] px-4 py-2 text-[#F3F4F6] rounded-md transition-all duration-150">
+                                <button className="border border-[#2E384D] bg-[#2E384D] hover:bg-[#111827] px-5 py-2 text-[#F3F4F6] rounded-r-full transition-all duration-150">
                                     Sign Up
                                 </button>
                             </NavLink>

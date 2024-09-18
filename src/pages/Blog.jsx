@@ -11,7 +11,7 @@ const Blog = () => {
             try {
                 const response = await axios.get(`https://newsapi.org/v2/everything?domains=wsj.com&apiKey=${API_KEY}`);
                 // Set the blogs from response.data.articles
-                setBlogs(response.data.articles);  // <-- Fix here
+                setBlogs(response.data.articles);
             } catch (error) {
                 console.error('Error fetching blog posts:', error);
             }
