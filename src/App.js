@@ -16,7 +16,7 @@ import { Route, Routes } from 'react-router-dom';
 import Suggestions from './pages/Suggestions';
 import Subscription from "./pages/Subscription";
 import Blog from './pages/Blog';
-
+import Reminder from './pages/Reminder';
 function App() {
   return (
     <div className="w-screen min-h-screen bg-richblack-5 flex flex-col font-inter">
@@ -36,6 +36,8 @@ function App() {
         <Route path="ai-suggestions" element={<Suggestions/>} />
         <Route path="subscription" element={<Subscription/>} />
         <Route path="/blog" element={<Blog />} />
+        <Route path="/reminder" element={<Reminder />} />
+
       </Routes>
     </div>
   );

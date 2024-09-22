@@ -117,6 +117,11 @@ const Navbar = () => {
                             Consult
                         </p>
                     </NavLink>
+                    <NavLink to="/reminder">
+                        <p className={`${matchRoute("/reminder") ? "text-[#FFD700]" : "text-[#000000]"}`}>
+                            Reminder
+                        </p>
+                    </NavLink>
                 </div>
 
                 <div className="hidden md:flex gap-x-2 items-center">
