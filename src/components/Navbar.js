@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { NavLink, useLocation, matchPath, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import logo from "../assets/logo.png";
+import icon from "../assets/icon.png";
 import { AiOutlineMenu, AiOutlineClose, AiOutlineEnvironment } from "react-icons/ai";
 import { logout } from "../services/operations/authAPI";
 import { CgProfile } from "react-icons/cg";
@@ -69,7 +70,7 @@ const Navbar = () => {
 
                 <NavLink to="/">
                     <div className="flex items-center gap-x-2 rounded-md p-2 bg-transparent justify-start">
-                        <MdOutlineHealthAndSafety className="text-[#000000] h-5 w-5" />
+                        <img src={icon} alt="Icon" className="h-10 w-10" />  
                         <img
                             src={logo}
                             alt="Logo"
