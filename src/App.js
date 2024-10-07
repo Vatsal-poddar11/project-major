@@ -17,6 +17,9 @@ import Suggestions from './pages/Suggestions';
 import Subscription from "./pages/Subscription";
 import Blog from './pages/Blog';
 import Reminder from './pages/Reminder';
+import DoctorSelection from './pages/DoctorSelection';
+import UploadPrescription from './pages/UploadPrescription';
+
 function App() {
   return (
     <div className="w-screen min-h-screen bg-richblack-5 flex flex-col font-inter">
@@ -37,6 +40,8 @@ function App() {
         <Route path="subscription" element={<Subscription/>} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/reminder" element={<Reminder />} />
+        <Route path="doctor-profile" element={<DoctorSelection/>} />
+        <Route path="/upload-prescription" element={<UploadPrescription />} />
 
       </Routes>
     </div>

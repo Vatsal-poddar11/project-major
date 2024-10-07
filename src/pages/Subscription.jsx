@@ -1,101 +1,15 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { FaPhoneAlt, FaVideo, FaComments } from 'react-icons/fa';
 import { BsFillCheckCircleFill } from 'react-icons/bs';
 
 const SubscriptionPlans = () => {
-  const token = useSelector((state) => state.auth.token); // Fetch the token from Redux store
+  const [selectedPlanPrice, setSelectedPlanPrice] = useState(null);
+  const navigate = useNavigate();
 
-  // Load the Razorpay SDK dynamically
-  const loadRazorpayScript = () => {
-    return new Promise((resolve) => {
-      const script = document.createElement('script');
-      script.src = 'https://checkout.razorpay.com/v1/checkout.js';
-      script.onload = () => resolve(true);
-      script.onerror = () => resolve(false);
-      document.body.appendChild(script);
-    });
-  };
-
-  // Handle checkout process and Razorpay payment
-  const handlePayment = async (amount, planType) => {
-    const isScriptLoaded = await loadRazorpayScript();
-    if (!isScriptLoaded) {
-      alert('Razorpay SDK failed to load. Are you online?');
-      return;
-    }
-
-    try {
-      // Call backend to create a Razorpay order and get order details
-      const response = await fetch('http://localhost:4000/api/v1/payment/capture-payment', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`, // Use token here
-        },
-        body: JSON.stringify({
-          totalAmount: amount,
-        }),
-      });
-
-      const data = await response.json();
-      console.log('Data from backend : ', data);
-      if (!response.ok) {
-        console.error('Failed to create order:', data.message);
-        return;
-      }
-
-      const options = {
-        key: process.env.REACT_APP_RAZORPAY_KEY_ID,
-        amount: data.amount,
-        currency: data.currency,
-        name: "Your Store",
-        description: `Payment for ${planType}`,
-        order_id: data.orderId,
-        handler: function (response) {
-          const paymentData = {
-            razorpay_payment_id: response.razorpay_payment_id,
-            razorpay_order_id: response.razorpay_order_id,
-            razorpay_signature: response.razorpay_signature,
-          };
-
-          fetch('http://localhost:4000/api/v1/payment/verify-signature', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${token}`, // Use token here
-            },
-            body: JSON.stringify(paymentData),
-          })
-            .then((res) => res.json())
-            .then((data) => {
-              if (data.success) {
-                alert('Payment successful!');
-                console.log('Payment verified:', data);
-              } else {
-                alert('Payment verification failed.');
-              }
-            });
-        },
-        prefill: {
-          name: "Customer Name",
-          email: "customer@example.com",
-          contact: "9999999999",
-        },
-        notes: {
-          address: "Customer's Address",
-        },
-        theme: {
-          color: "#4A90E2",
-        },
-      };
-
-      const razorpayInstance = new window.Razorpay(options);
-      razorpayInstance.open();
-
-    } catch (error) {
-      console.error('Error during checkout:', error);
-    }
+  const proceedToProfile = (price) => {
+    setSelectedPlanPrice(price);
+    navigate('/doctor-profile', { state: { price } }); 
   };
 
   return (
@@ -128,9 +42,9 @@ const SubscriptionPlans = () => {
             </li>
           </ul>
           <button
-            onClick={() => handlePayment(300, 'Chat Consultation')}
+            onClick={() => proceedToProfile(300)}
             className="bg-[#4b5563] text-white py-3 px-6 rounded-full shadow-md hover:bg-[#1f2937] transition-transform transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
-            Proceed to Pay
+            Buy Now
           </button>
         </div>
 
@@ -156,9 +70,9 @@ const SubscriptionPlans = () => {
             </li>
           </ul>
           <button
-            onClick={() => handlePayment(500, 'Call Consultation')}
+            onClick={() => proceedToProfile(500)}
             className="bg-[#4b5563] text-white py-3 px-6 rounded-full shadow-md hover:bg-[#1f2937] transition-transform transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
-            Proceed to Pay
+            Buy Now
           </button>
         </div>
 
@@ -184,9 +98,9 @@ const SubscriptionPlans = () => {
             </li>
           </ul>
           <button
-            onClick={() => handlePayment(700, 'Video Consultation')}
+            onClick={() => proceedToProfile(700)}
             className="bg-[#4b5563] text-white py-3 px-6 rounded-full shadow-md hover:bg-[#1f2937] transition-transform transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
-            Proceed to Pay
+            Buy Now
           </button>
         </div>
       </div>

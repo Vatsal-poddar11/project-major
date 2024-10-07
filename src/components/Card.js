@@ -14,7 +14,7 @@ const Card = ({ id, name, info, image, price, userId }) => {
   };
 
   const incrementQuantity = () => {
-    setQuantity(prevQuantity => {
+    setQuantity((prevQuantity) => {
       const newQuantity = prevQuantity + 1;
       dispatch(updateQuantity({ userId, id, quantity: newQuantity }));
       return newQuantity;
@@ -22,7 +22,7 @@ const Card = ({ id, name, info, image, price, userId }) => {
   };
 
   const decrementQuantity = () => {
-    setQuantity(prevQuantity => {
+    setQuantity((prevQuantity) => {
       if (prevQuantity > 1) {
         const newQuantity = prevQuantity - 1;
         dispatch(updateQuantity({ userId, id, quantity: newQuantity }));
@@ -41,57 +41,54 @@ const Card = ({ id, name, info, image, price, userId }) => {
   };
 
   return (
-    <div className='bg-[#f3f4f6] shadow-lg rounded-lg overflow-hidden transform transition-all hover:scale-105 hover:shadow-xl duration-300'>
-      <div className='overflow-hidden'>
+    <div className="bg-[#2b2d42] text-[#ffffff] p-6 rounded-lg shadow-lg transform transition-all hover:scale-105 hover:shadow-2xl duration-300">
+      <div className="rounded-lg overflow-hidden shadow-md">
         <img
           src={image}
           alt={name}
-          className='w-full h-48 object-cover scale-90 object-center transition-transform duration-300 ease-in-out hover:scale-105'
+          className="w-full h-56 object-cover object-center transition-transform duration-300 ease-in-out hover:scale-105"
         />
       </div>
 
-      <div className='p-6 bg-[#ffffff]'>
-        <div className='flex justify-between items-center'>
-          <h4 className='text-xl font-bold text-[#2b2d42]'>{name}</h4>
-          <h4 className='text-lg font-semibold text-[#8d99ae]'>₹ {price}</h4>
-        </div>
-        
-        <p className='text-sm text-[#4d5460] mt-2 leading-relaxed'>
-          {description}
-        </p>
-        
+      <div className="mt-4">
+        <h3 className="text-2xl font-bold text-[#8d99ae]">{name}</h3>
+        <p className="mt-2 text-[#f3f4f6]">{description}</p>
+
         <span
-          className='text-[#007bff] cursor-pointer mt-2 inline-block font-medium hover:text-[#0056b3] transition-colors duration-200'
+          className="text-[#00b4d8] cursor-pointer mt-2 block font-medium hover:text-[#0096c7] transition-colors duration-200"
           onClick={readMoreHandler}
         >
           {readMore ? 'Show Less' : 'Read More'}
         </span>
 
-        <div className='flex items-center mt-4'>
-          {!isAdded ? (
-            <button
-              className='bg-[#2b2d42] text-white font-semibold py-2 px-4 rounded-full hover:bg-[#1e2531] transition-all duration-200 shadow-md'
-              onClick={addToCartHandler}
-            >
-              Add to Cart
-            </button>
-          ) : (
-            <div className='flex items-center'>
+        <div className="flex items-center justify-between mt-6">
+          <span className="text-lg font-bold text-[#8d99ae]">₹ {price}</span>
+          <div>
+            {!isAdded ? (
               <button
-                className='bg-[#e0e0e0] text-[#333333] border border-[#dcdcdc] py-1 px-3 rounded-full hover:bg-[#d0d0d0] transition-all duration-200'
-                onClick={decrementQuantity}
+                className="bg-[#00b4d8] text-white font-bold py-2 px-6 rounded-full hover:bg-[#0077b6] transition-all duration-200"
+                onClick={addToCartHandler}
               >
-                -
+                Add to Cart
               </button>
-              <span className='mx-4 text-lg font-semibold text-[#2b2d42]'>{quantity}</span>
-              <button
-                className='bg-[#e0e0e0] text-[#333333] border border-[#dcdcdc] py-1 px-3 rounded-full hover:bg-[#d0d0d0] transition-all duration-200'
-                onClick={incrementQuantity}
-              >
-                +
-              </button>
-            </div>
-          )}
+            ) : (
+              <div className="flex items-center space-x-4">
+                <button
+                  className="bg-[#adb5bd] text-[#2b2d42] font-bold py-1 px-3 rounded-full hover:bg-[#868e96] transition-all duration-200"
+                  onClick={decrementQuantity}
+                >
+                  -
+                </button>
+                <span className="text-xl font-bold text-[#ffffff]">{quantity}</span>
+                <button
+                  className="bg-[#adb5bd] text-[#2b2d42] font-bold py-1 px-3 rounded-full hover:bg-[#868e96] transition-all duration-200"
+                  onClick={incrementQuantity}
+                >
+                  +
+                </button>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>

@@ -14,7 +14,7 @@ const Catalog = () => {
   );
 
   return (
-    <div className='container mx-auto p-6 bg-gradient-to-r from-[#2b2d42] to-[#8d99ae]'>
+    <div className='container mx-auto p-6'>
       <SearchBar query={query} setQuery={setQuery} />
 
       {/* Check if there are no matching results */}
