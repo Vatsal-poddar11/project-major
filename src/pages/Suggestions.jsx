@@ -21,7 +21,6 @@ const Suggestions = () => {
       const result = await model.generateContent(`I am having ${symptoms}. What are some other symptoms related to it? Don't worry I will consult a doctor. Also please suggest some common medicines that are used for the given symptoms.`);
       const responseText = result.response.text();
 
-      // Process the response text, formatting headings and content
       const lines = responseText.split('\n').filter(Boolean);
       const formatted = lines.map(line => {
         if (line.startsWith('**')) {
@@ -29,7 +28,7 @@ const Suggestions = () => {
         } else if (line.startsWith('*')) {
           return { type: 'content', content: line.replace('*', '').trim() };
         }
-        return { type: 'newLine', content: '' }; // For empty new line handling
+        return { type: 'newLine', content: '' };
       });
 
       setFormattedSuggestions(formatted);

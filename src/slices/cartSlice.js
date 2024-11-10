@@ -16,8 +16,6 @@ export const CartSlice = createSlice({
     reducers: {
         add: (state, action) => {
             const { userId, item } = action.payload;
-            console.log('Item received in reducer:', item); // Debug here
-            console.log('Image property:', item.image); // Check if image is defined
             if (!state.usersCarts[userId]) {
                 state.usersCarts[userId] = { items: {} }; 
             }

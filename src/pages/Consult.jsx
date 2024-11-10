@@ -14,7 +14,7 @@ const Consult = () => {
   };
 
   return (
-    <div className="text-center py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-[#2b2d42] to-[#8d99ae]">
+    <div className="text-center py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-[#2b2d42] to-[#8d99ae]">
       <h1 className="text-2xl sm:text-3xl font-bold mb-10 text-[#ffffff]">
         Consult a Doctor or Explore AI-Powered Health Suggestions
       </h1>

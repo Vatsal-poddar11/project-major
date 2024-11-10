@@ -49,7 +49,8 @@ const UploadPrescription = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-[#2b2d42] to-[#8d99ae] p-4">
+    <div className="flex gap-20 justify-center items-center min-h-screen bg-gradient-to-r from-[#dcd8d8] to-[#bccae2] p-4">
+        <h2 className="text-3xl font-bold text-center text-[#2b2d42] mb-8">Upload Prescription</h2>
       <form
         onSubmit={handleUpload}
         className="flex flex-col gap-6 w-full max-w-md p-6 bg-[#ffffff] border border-[#d1d5db] rounded-md shadow-md"
