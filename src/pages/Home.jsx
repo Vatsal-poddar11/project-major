@@ -84,7 +84,7 @@ const Home = () => {
           </button>
         </div>
         <img
-          src="https://via.placeholder.com/600x400"
+          src="https://www.shutterstock.com/image-photo/shopping-trolley-medicines-pill-blister-600nw-2063222330.jpg"
           alt="Medicines Delivery"
           className="absolute inset-0 w-full h-full object-cover opacity-20"
         />
